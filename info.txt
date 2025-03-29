@@ -6,8 +6,11 @@ c. Nombre de los Estudiantes
 Gadir Calderon Díaz
 Bayron Rodríguez Centeno
 d. Número de carnet de los estudiantes 
+2022327328
 2020114659
 e. Número de tarea 
 Tarea I
 f. Fecha de entrega 
 28/03/2025
+g. Estaus
+Excelente
