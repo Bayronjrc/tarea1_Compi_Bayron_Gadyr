@@ -14,7 +14,7 @@ block ::= (stmt | decl)*
 @ Punto B: Manejo de tipos de variables
 tipo ::= 'int' | 'float' | 'bool' | 'char' | 'string'
 
-tipo_arr ::= tipo '[' exp ']' | tipo '[' exp ']' '[' exp ']'
+tipo_arr ::= tipo '[' lit_int ']' | tipo '[' lit_int ']' '[' lit_int ']'
 
 
 @ Punto C: Creación y manejo de arreglos
@@ -129,9 +129,6 @@ comment_block ::= '{' loIgnora '}'
 
 loIgnora ::= <cualquier secuencia de caracteres excepto delimitadores de fin>
 
-
-
-
 lit ::= lit_int | lit_float | lit_bool | lit_char | lit_string
 
 lit_int ::= digit+
@@ -150,6 +147,3 @@ letter ::= [A-Za-z_]
 
 id ::= letter (letter | digit)*
 
-symbol ::= letter | digit | caracteres-especiales
-
-caracter-especial ::= "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" 
