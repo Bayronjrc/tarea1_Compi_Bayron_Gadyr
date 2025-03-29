@@ -129,6 +129,7 @@ comment_block ::= '{' loIgnora '}'
 
 loIgnora ::= <cualquier secuencia de caracteres excepto delimitadores de fin>
 
+
 lit ::= lit_int | lit_float | lit_bool | lit_char | lit_string
 
 lit_int ::= digit+
@@ -147,3 +148,6 @@ letter ::= [A-Za-z_]
 
 id ::= letter (letter | digit)*
 
+symbol ::= letter | digit | caracteres-especiales
+
+caracter-especial ::= "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" 
