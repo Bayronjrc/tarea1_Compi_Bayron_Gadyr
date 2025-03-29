@@ -1,0 +1,131 @@
+@ Punto A: Creación de funciones, estructuras de control y bloques de Codigo
+
+program ::= (decl_fun)*
+
+decl_fun ::= tipo_r id '(' param? ')' '\' block '/'
+
+tipo_r ::= 'int' | 'float' | 'char' | 'bool' | 'void'
+
+param ::= tipo id (',' tipo id)*
+
+block ::= (stmt | decl)*
+
+
+@ Punto B: Manejo de tipos de variables
+tipo ::= 'int' | 'float' | 'bool' | 'char' | 'string'
+
+tipo_arr ::= tipo '[' exp ']' | tipo '[' exp ']' '[' exp ']'
+
+
+@ Punto C: Creación y manejo de arreglos
+
+decl_arr ::= 'int' id '[' exp ']' '?' | 'int' id '[' exp ']' '[' exp ']' '?' | 'int' id '[' exp ']' '|' exp_list '|' '?'| 'int' id '[' exp ']' '[' exp ']' '|' exp_matrix '|' '?'
+
+exp_list ::= exp (',' exp)*
+
+exp_matrix ::= exp_list (',' exp_list)*
+
+arr_access ::= id '[' exp ']' | id '[' exp ']' '[' exp ']'
+
+arr_assign ::= arr_access '=' exp '?'
+
+@ Punto D: Sentencias de creación y asignación
+
+stmt ::= exp '?' | assign | decl_var | ctrl | break | return | read | write
+
+assign ::= id '=' exp '?'
+         | arr_access '=' exp '?'
+
+decl_var ::= tipo id '|' exp '?' | tipo id '?' | tipo_arr id '?'
+
+@ Punto E y F: Expresiones, operadores y precedencia
+
+exp ::= exp_arit | exp_rel | exp_log | exp_term
+
+exp_term ::= id | lit | arr_access | fun_call | '(' exp ')'
+
+fun_call ::= id '(' arg_list? ')'
+
+arg_list ::= exp (',' exp)*
+
+@ Punto G: Expresiones aritmeticas binarias
+
+exp_arit ::= exp '+' exp | exp '-' exp | exp '*' exp | exp '//' exp | exp '~' exp | exp '**' exp | exp_term
+
+@ Punto H: Expresiones Aritméticas Unarias
+
+exp_unary ::= '-' exp | '++' id  | '--' id | exp_term
+
+@ Punto I: Expresiones Relacionales
+
+exp_rel ::= exp_arit op_rel exp_arit | exp_bool op_rel exp_bool
+
+op_rel ::= '<' | '<=' | '>' | '>=' | '==' | '!='
+
+@ Punto J: Expresiones logicas
+
+exp_log ::= exp op_log exp | op_log exp
+
+op_log ::= '^' | '#' | '!'
+
+
+@ Punto K: Delimitador de Sentencias
+
+stmt_end ::= '?'
+
+@ Punto I: Combinación de Expresiones
+
+exp_comb ::= exp_arit | exp_rel | exp_log | exp_arit op_rel exp_arit | exp_log op_log exp_log
+
+@ Punto M: Tipado explicito y fuerte
+
+decl_var ::= tipo id '|' exp '?' | tipo id '?' | tipo_arr id '?'
+
+tipo ::= 'int' | 'float' | 'bool' | 'char' | 'string'
+
+@ Punto N: Estructuras de control
+
+ctrl ::= if | do_while | for
+
+if ::= 'if' '(' exp_bool ')' '\' block '/' ('elif' '(' exp_bool ')' '\' block '/')* ('else' '\' block '/')?
+
+do_while ::= 'do' '\' block '/' 'while' '(' exp_bool ')' '?'
+
+for ::= 'for' '(' decl_var? '?' exp_bool? '?' exp? ')' '\' block '/'
+
+break ::= 'break' '?'
+
+return ::= 'return' exp? '?'
+
+exp_bool ::= exp_rel | exp_log | 'true' | 'false'
+
+@ Punto O: Funciones de entrada y salida
+
+read ::= 'read' '(' t_entry ')' '?'
+
+t_entry ::= 'int' | 'float'
+
+write ::= 'write' '(' exp_out ')' '?'
+
+exp_out ::= lit | id | exp
+
+@ Punto P: Declaración de funciones
+
+decl_fun ::= tipo_r id '(' param? ')' '\' block '/'
+
+tipo_r ::= 'int' | 'float' | 'char' | 'bool' | 'void'
+
+param ::= tipo id (',' tipo id)*
+
+@ Punto Q: Función main
+
+program ::= 'void' 'main' '(' ')' '\' block '/'
+
+@ Punto R: Comentarios
+
+comment ::= '@' loIgnora '\n'
+
+comment_block ::= '{' loIgnora '}'
+
+loIgnora ::= <cualquier secuencia de caracteres excepto delimitadores de fin>
+
